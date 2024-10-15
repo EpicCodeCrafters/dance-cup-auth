@@ -1,4 +1,6 @@
-﻿namespace ECC.DanceCup.Auth;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
+
+namespace ECC.DanceCup.Auth;
 
 public class Startup
 {
@@ -12,7 +14,7 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddGrpc();
-        services.AddGrpcHealthChecks();
+        services.AddGrpcHealthChecks().AddCheck(string.Empty, () => HealthCheckResult.Healthy());
     }
 
     public void Configure(IApplicationBuilder app)
