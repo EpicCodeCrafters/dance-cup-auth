@@ -1,4 +1,5 @@
 using ECC.DanceCup.Auth;
+using ECC.DanceCup.Auth.Extensions;
 using Microsoft.AspNetCore;
 
 var host = WebHost
@@ -12,7 +13,7 @@ var host = WebHost
 
 if (args is ["--migrate"])
 {
-    // await host.MigrateAsync();
+    await host.MigrateAsync();
     return;
 }
 

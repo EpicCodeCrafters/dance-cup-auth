@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+      <ProjectReference Include="..\ECC.DanceCup.Auth.Domain\ECC.DanceCup.Auth.Domain.csproj" />
+    </ItemGroup>
+
+</Project>
