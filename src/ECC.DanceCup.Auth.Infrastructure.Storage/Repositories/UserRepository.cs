@@ -25,7 +25,7 @@ public class UserRepository : IUserRepository
             returning "id";
             """;
 
-        var userId = await connection.QuerySingleAsync(sqlCommand, user);
+        var userId = await connection.QuerySingleAsync<long>(sqlCommand, user);
 
         return userId;
     }
