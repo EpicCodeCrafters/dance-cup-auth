@@ -14,15 +14,18 @@ public static partial class CreateUserUseCase
         private readonly IUserFactory _userFactory;
         private readonly IUserRepository _userRepository;
         private readonly IEncoder _encoder;
+        private readonly ITokenProvider _tokenProvider;
 
         public CommandHandler(
             IUserFactory userFactory,
             IUserRepository userRepository,
-            IEncoder encoder)
+            IEncoder encoder, 
+            ITokenProvider tokenProvider)
         {
             _userFactory = userFactory;
             _userRepository = userRepository;
             _encoder = encoder;
+            _tokenProvider = tokenProvider;
         }
 
         public async Task<Result<CommandResponse>> Handle(Command command, CancellationToken cancellationToken)
@@ -44,7 +47,9 @@ public static partial class CreateUserUseCase
             var user = createUserResult.Value;
             var userId = await _userRepository.InsertAsync(user, cancellationToken);
 
-            return new CommandResponse(userId);
+            var token = _tokenProvider.CreateUserToken(user);
+
+            return new CommandResponse(userId, token);
         }
     }
 }

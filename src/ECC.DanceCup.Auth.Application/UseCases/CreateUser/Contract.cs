@@ -10,5 +10,8 @@ public static partial class CreateUserUseCase
         string Password
     ) : IRequest<Result<CommandResponse>>;
 
-    public record CommandResponse(long UserId);
+    public record CommandResponse(
+        long UserId,
+        string Token
+    );
 }

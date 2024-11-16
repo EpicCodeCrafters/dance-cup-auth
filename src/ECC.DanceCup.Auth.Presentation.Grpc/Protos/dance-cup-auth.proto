@@ -16,6 +16,7 @@ message CreateUserRequest {
 
 message CreateUserResponse {
     int64 user_id = 1;
+    string token = 2;
 }
 
 message GetUserTokenRequest {

@@ -24,7 +24,8 @@ public class DanceCupAuthGrpcService : DanceCupAuth.DanceCupAuthBase
 
         return new CreateUserResponse
         {
-            UserId = result.Value.UserId
+            UserId = result.Value.UserId,
+            Token = result.Value.Token
         };
     }
 
