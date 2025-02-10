@@ -11,10 +11,21 @@ var host = WebHost
     })
     .Build();
 
-if (args is ["--migrate"])
+switch (args)
 {
-    await host.MigrateAsync();
-    return;
+    case ["--migrate"]:
+        await host.MigrateAsync();
+        return;
+    
+    case ["--migrate", "dry-run"]:
+        await host.MigrateDryRunAsync();
+        return;
+    
+    case ["--migrate", "down"]:
+        await host.MigrateDownAsync();
+        return;
+    
+    default:
+        await host.RunAsync();
+        return;
 }
-
-await host.RunAsync();

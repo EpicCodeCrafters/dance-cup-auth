@@ -11,4 +11,20 @@ public static class WebHostExtensions
     
         migrationRunner.MigrateUp();
     }
+    
+    public static async Task MigrateDryRunAsync(this IWebHost host)
+    {
+        await using var scope = host.Services.CreateAsyncScope();
+        var migrationRunner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+    
+        migrationRunner.ListMigrations();
+    }
+    
+    public static async Task MigrateDownAsync(this IWebHost host)
+    {
+        await using var scope = host.Services.CreateAsyncScope();
+        var migrationRunner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+    
+        migrationRunner.MigrateDown(0);
+    }
 }

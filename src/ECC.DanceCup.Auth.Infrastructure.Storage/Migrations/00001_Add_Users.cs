@@ -23,7 +23,7 @@ public class Add_Users : SqlMigration
 
     protected override string? DownSqlCommand =>
         """
-        drop table if exists "users";
         drop index concurrently if exists "idx_users_username";
+        drop table if exists "users";
         """;
 }
