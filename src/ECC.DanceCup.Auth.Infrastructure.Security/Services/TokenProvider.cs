@@ -19,7 +19,7 @@ public class TokenProvider : ITokenProvider
 
     public string CreateUserToken(User user)
     {
-        var claims = new List<Claim>
+        var claims = new Claim[]
         {
             new(ClaimTypes.Name, user.Username)
         };
