@@ -21,6 +21,7 @@ public class TokenProvider : ITokenProvider
     {
         var claims = new Claim[]
         {
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Name, user.Username)
         };
 
