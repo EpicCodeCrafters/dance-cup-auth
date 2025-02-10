@@ -16,8 +16,16 @@ public static class WebHostExtensions
     {
         await using var scope = host.Services.CreateAsyncScope();
         var migrationRunner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
-    
-        migrationRunner.ListMigrations();
+
+        migrationRunner.Processor.BeginTransaction();
+        try
+        {
+            migrationRunner.MigrateUp();
+        }
+        finally
+        {
+            migrationRunner.Processor.RollbackTransaction();
+        }
     }
     
     public static async Task MigrateDownAsync(this IWebHost host)
