@@ -20,6 +20,26 @@
       },
       "commandLineArgs": "--migrate"
     },
+    "migrate dev dry-run": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5210",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "commandLineArgs": "--migrate dry-run"
+    },
+    "migrate dev down": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5210",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "commandLineArgs": "--migrate down"
+    },
     "prod": {
       "commandName": "Project",
       "dotnetRunMessages": true,
