@@ -1,5 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup>
-    <ProjectReference Include="..\ECC.DanceCup.Auth.Application.Abstractions\ECC.DanceCup.Auth.Application.Abstractions.csproj" />
-  </ItemGroup>
-</Project>
