@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using System.Data;
+using Dapper;
 using ECC.DanceCup.Auth.Application.Abstractions.Storage;
 using ECC.DanceCup.Auth.Domain.Model;
 using ECC.DanceCup.Auth.Infrastructure.Storage.Postgres;
@@ -50,7 +51,7 @@ public class UserRepository : IUserRepository
         var updatedCount = await connection.ExecuteAsync(sqlCommand, user);
         if (updatedCount == 0)
         {
-            throw new NotImplementedException();
+            throw new DBConcurrencyException("Не удалось обновить пользователя");
         }
     }
 

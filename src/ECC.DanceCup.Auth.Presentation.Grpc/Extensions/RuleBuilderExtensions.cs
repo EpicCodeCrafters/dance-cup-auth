@@ -8,13 +8,13 @@ internal static class RuleBuilderExtensions
     {
         return ruleBuilder
             .NotEmpty()
-            .WithMessage("...");
+            .WithMessage("Необходимо передать корректное имя пользователя");
     }
     
     public static IRuleBuilderOptions<T, string> IsValidPassword<T>(this IRuleBuilder<T, string> ruleBuilder)
     {
         return ruleBuilder
             .NotEmpty()
-            .WithMessage("...");
+            .WithMessage("Необходимо передать корректный пароль");
     }
 }
