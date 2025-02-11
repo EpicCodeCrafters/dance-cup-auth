@@ -39,6 +39,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECC.DanceCup.Auth.Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECC.DanceCup.Auth.Presentation.Grpc", "src\ECC.DanceCup.Auth.Presentation.Grpc\ECC.DanceCup.Auth.Presentation.Grpc.csproj", "{B061311E-F2C9-42F3-B480-ED061A6776C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECC.DanceCup.Auth.Domain.Tests", "ECC.DanceCup.Auth.Domain.Tests\ECC.DanceCup.Auth.Domain.Tests.csproj", "{A92EA232-98F6-495F-9064-D1F70B4244CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECC.DanceCup.Auth.Domain.Tests.Common", "ECC.DanceCup.Auth.Domain.Tests.Common\ECC.DanceCup.Auth.Domain.Tests.Common.csproj", "{4ED15EC9-06DB-4356-8140-5683922A6E84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,8 @@ Global
 		{032498F8-C56F-4B81-AB44-DE74C4A64EE3} = {29462F65-5941-416E-A921-206CDF892563}
 		{A3B0F567-C2A6-46EE-B322-B6A8F4B271BC} = {29462F65-5941-416E-A921-206CDF892563}
 		{B061311E-F2C9-42F3-B480-ED061A6776C2} = {843C521D-0AC4-428E-BA19-B34D56682D5C}
+		{A92EA232-98F6-495F-9064-D1F70B4244CB} = {FCBD56AE-DB9A-431C-BF86-F6D6735D1DC3}
+		{4ED15EC9-06DB-4356-8140-5683922A6E84} = {FCBD56AE-DB9A-431C-BF86-F6D6735D1DC3}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B0CCFD41-6779-47FE-9763-C9F3FAC7A4AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -91,5 +97,13 @@ Global
 		{B061311E-F2C9-42F3-B480-ED061A6776C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B061311E-F2C9-42F3-B480-ED061A6776C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B061311E-F2C9-42F3-B480-ED061A6776C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A92EA232-98F6-495F-9064-D1F70B4244CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A92EA232-98F6-495F-9064-D1F70B4244CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A92EA232-98F6-495F-9064-D1F70B4244CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A92EA232-98F6-495F-9064-D1F70B4244CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ED15EC9-06DB-4356-8140-5683922A6E84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ED15EC9-06DB-4356-8140-5683922A6E84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ED15EC9-06DB-4356-8140-5683922A6E84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ED15EC9-06DB-4356-8140-5683922A6E84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
