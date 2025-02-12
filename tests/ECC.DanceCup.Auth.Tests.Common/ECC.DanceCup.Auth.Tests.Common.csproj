@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    
+    <ItemGroup>
+      <Folder Include="Errors\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\ECC.DanceCup.Auth.Domain\ECC.DanceCup.Auth.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoFixture" />
+      <PackageReference Include="AutoFixture.AutoMoq" />
+      <PackageReference Include="AutoFixture.Xunit2" />
+      <PackageReference Include="FluentAssertions" />
+    </ItemGroup>
+
+</Project>
