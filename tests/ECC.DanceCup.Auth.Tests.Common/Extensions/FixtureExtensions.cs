@@ -1,7 +1,7 @@
 ﻿using AutoFixture;
 using ECC.DanceCup.Auth.Domain.Model;
 
-namespace ECC.DanceCup.Auth.Domain.Tests.Common.Extensions;
+namespace ECC.DanceCup.Auth.Tests.Common.Extensions;
 
 public static class FixtureExtensions
 {

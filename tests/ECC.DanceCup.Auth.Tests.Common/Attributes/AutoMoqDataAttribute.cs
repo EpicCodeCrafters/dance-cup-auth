@@ -2,7 +2,7 @@
 using AutoFixture.AutoMoq;
 using AutoFixture.Xunit2;
 
-namespace ECC.DanceCup.Auth.Domain.Tests.Common.Attributes;
+namespace ECC.DanceCup.Auth.Tests.Common.Attributes;
 
 public class AutoMoqDataAttribute : AutoDataAttribute
 {

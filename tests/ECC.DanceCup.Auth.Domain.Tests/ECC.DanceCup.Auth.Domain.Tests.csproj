@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+      <Folder Include="Services\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="xunit" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ECC.DanceCup.Auth.Tests.Common\ECC.DanceCup.Auth.Tests.Common.csproj" />
+    </ItemGroup>
+
+</Project>
