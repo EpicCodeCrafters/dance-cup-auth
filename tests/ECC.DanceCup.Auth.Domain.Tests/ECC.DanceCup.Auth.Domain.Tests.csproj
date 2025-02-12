@@ -9,7 +9,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ECC.DanceCup.Auth.Tests.Common\ECC.DanceCup.Auth.Tests.Common.csproj" />
+        <ProjectReference Include="..\..\src\ECC.DanceCup.Auth.Domain\ECC.DanceCup.Auth.Domain.csproj" />
     </ItemGroup>
 
 </Project>
