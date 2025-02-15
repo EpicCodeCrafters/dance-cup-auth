@@ -28,6 +28,8 @@ public class TokenProvider : ITokenProvider
         var securityKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_securityOptions.Value.Secret));
         var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
         var token = new JwtSecurityToken(
+            issuer: _securityOptions.Value.Issuer,  
+            audience: _securityOptions.Value.Audience, 
             claims: claims,
             signingCredentials: signingCredentials,
             expires: DateTime.UtcNow.AddMinutes(_securityOptions.Value.TokenExpiresMinutes)
