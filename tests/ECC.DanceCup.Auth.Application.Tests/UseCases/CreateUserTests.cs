@@ -1,6 +1,7 @@
 ﻿using AutoFixture.Xunit2;
 using ECC.DanceCup.Auth.Application.Abstractions.Security;
 using ECC.DanceCup.Auth.Application.Abstractions.Storage;
+using ECC.DanceCup.Auth.Application.Errors;
 using ECC.DanceCup.Auth.Application.UseCases.CreateUser;
 using ECC.DanceCup.Auth.Domain.Model;
 using ECC.DanceCup.Auth.Domain.Services;
@@ -147,6 +148,46 @@ public class CreateUserTests
             userEncoder => userEncoder.CalculateHash(password),
             Times.Once
         );
+        userEncoderMock.VerifyNoOtherCalls();
+        
+        tokenProviderMock.VerifyNoOtherCalls();
+    }
+    
+    [Theory, AutoMoqData]
+    public async Task Handle_UserAlreadyExists_ShouldFail(
+        string userName,
+        string password,
+        User user,
+        [Frozen] Mock<IUserFactory> userFactoryMock,
+        [Frozen] Mock<IUserRepository> userRepositoryMock,
+        [Frozen] Mock<IEncoder> userEncoderMock,
+        [Frozen] Mock<ITokenProvider> tokenProviderMock,
+        CreateUserUseCase.CommandHandler handler
+    )
+    {
+        //Arrange
+        userRepositoryMock
+            .Setup(userRepository => userRepository.FindAsync(userName, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
+        
+        var command = new CreateUserUseCase.Command(userName, password);
+        
+        //Act
+        
+        var result = await handler.Handle(command, CancellationToken.None);
+        
+        //Assert
+        
+        result.ShouldBeFailWith<UserAlreadyExistsError>();
+        
+        userFactoryMock.VerifyNoOtherCalls();
+        
+        userRepositoryMock.Verify(
+            userRepository => userRepository.FindAsync(userName, It.IsAny<CancellationToken>()),
+            Times.Once
+        );
+        userRepositoryMock.VerifyNoOtherCalls();
+        
         userEncoderMock.VerifyNoOtherCalls();
         
         tokenProviderMock.VerifyNoOtherCalls();
