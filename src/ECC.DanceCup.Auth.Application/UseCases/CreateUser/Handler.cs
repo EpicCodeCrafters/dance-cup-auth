@@ -1,4 +1,5 @@
-﻿using ECC.DanceCup.Auth.Application.Abstractions.Security;
+﻿using ECC.DanceCup.Auth.Application.Abstractions.Notifications;
+using ECC.DanceCup.Auth.Application.Abstractions.Security;
 using ECC.DanceCup.Auth.Application.Abstractions.Storage;
 using ECC.DanceCup.Auth.Application.Errors;
 using ECC.DanceCup.Auth.Domain.Services;
@@ -15,17 +16,20 @@ public static partial class CreateUserUseCase
         private readonly IUserRepository _userRepository;
         private readonly IEncoder _encoder;
         private readonly ITokenProvider _tokenProvider;
+        private readonly INotificationsService _notificationsService;
 
         public CommandHandler(
             IUserFactory userFactory,
             IUserRepository userRepository,
             IEncoder encoder, 
-            ITokenProvider tokenProvider)
+            ITokenProvider tokenProvider,
+            INotificationsService notificationsService)
         {
             _userFactory = userFactory;
             _userRepository = userRepository;
             _encoder = encoder;
             _tokenProvider = tokenProvider;
+            _notificationsService = notificationsService;
         }
 
         public async Task<Result<CommandResponse>> Handle(Command command, CancellationToken cancellationToken)
@@ -48,6 +52,8 @@ public static partial class CreateUserUseCase
             var userId = await _userRepository.InsertAsync(user, cancellationToken);
 
             var token = _tokenProvider.CreateUserToken(user);
+
+            await _notificationsService.NotifyUserCreatedAsync(userId, user.Username, cancellationToken);
 
             return new CommandResponse(userId, token);
         }
