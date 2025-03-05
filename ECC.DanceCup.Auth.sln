@@ -45,6 +45,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECC.DanceCup.Auth.Applicati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECC.DanceCup.Auth.Infrastructure.Notifications", "src\ECC.DanceCup.Auth.Infrastructure.Notifications\ECC.DanceCup.Auth.Infrastructure.Notifications.csproj", "{4F2AC9DD-2559-47B4-BD79-5B8C821883FA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cicd", "cicd", "{0443A25C-1847-45D0-8A8B-9A1ECD85C915}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\github-cd.yml = .github\workflows\github-cd.yml
+		.github\workflows\github-ci.yml = .github\workflows\github-ci.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
