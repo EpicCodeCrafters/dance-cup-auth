@@ -1,4 +1,5 @@
 ﻿using AutoFixture.Xunit2;
+using ECC.DanceCup.Auth.Application.Abstractions.Notifications;
 using ECC.DanceCup.Auth.Application.Abstractions.Security;
 using ECC.DanceCup.Auth.Application.Abstractions.Storage;
 using ECC.DanceCup.Auth.Application.Errors;
@@ -9,6 +10,7 @@ using ECC.DanceCup.Auth.Tests.Common.Attributes;
 using ECC.DanceCup.Auth.Tests.Common.Errors;
 using ECC.DanceCup.Auth.Tests.Common.Extensions;
 using FluentAssertions;
+using MediatR;
 using Moq;
 using Xunit;
 
@@ -18,7 +20,7 @@ public class CreateUserTests
 {
     [Theory, AutoMoqData]
     public async Task Handle_ShouldGenerallySuccess(
-        string userName,
+        string username,
         string password,
         byte[] passwordHash,
         byte[] passwordSalt,
@@ -29,13 +31,14 @@ public class CreateUserTests
         [Frozen] Mock<IUserRepository> userRepositoryMock,
         [Frozen] Mock<IEncoder> userEncoderMock,
         [Frozen] Mock<ITokenProvider> tokenProviderMock,
+        [Frozen] Mock<INotificationsService> notificationsServiceMock,
         CreateUserUseCase.CommandHandler handler
     )
     {
-        //Arrange
+        // Arrange
         
         userFactoryMock
-            .Setup(userFactory => userFactory.Create(userName, passwordHash, passwordSalt))
+            .Setup(userFactory => userFactory.Create(username, passwordHash, passwordSalt))
             .Returns(user);
 
         userRepositoryMock
@@ -43,7 +46,7 @@ public class CreateUserTests
             .ReturnsAsync(userId);
         
         userRepositoryMock
-            .Setup(userRepository => userRepository.FindAsync(userName, It.IsAny<CancellationToken>()))
+            .Setup(userRepository => userRepository.FindAsync(username, It.IsAny<CancellationToken>()))
             .ReturnsAsync((User?)null);
         
         userEncoderMock
@@ -54,20 +57,20 @@ public class CreateUserTests
             .Setup(tokenProvider => tokenProvider.CreateUserToken(user))
             .Returns(token);
         
-        var command = new CreateUserUseCase.Command(userName, password);
+        var command = new CreateUserUseCase.Command(username, password);
         
-        //Act
+        // Act
         
         var result = await handler.Handle(command, CancellationToken.None);
         
-        //Assert
+        // Assert
         
         result.ShouldBeSuccess();
         result.Value.UserId.Should().Be(userId);
         result.Value.Token.Should().Be(token);
         
         userFactoryMock.Verify(
-            userFactory => userFactory.Create(userName, passwordHash, passwordSalt),
+            userFactory => userFactory.Create(username, passwordHash, passwordSalt),
             Times.Once
         );
         userFactoryMock.VerifyNoOtherCalls();
@@ -77,7 +80,7 @@ public class CreateUserTests
             Times.Once
         );
         userRepositoryMock.Verify(
-            userRepository => userRepository.FindAsync(userName, It.IsAny<CancellationToken>()),
+            userRepository => userRepository.FindAsync(username, It.IsAny<CancellationToken>()),
             Times.Once
         );
         userRepositoryMock.VerifyNoOtherCalls();
@@ -93,6 +96,16 @@ public class CreateUserTests
             Times.Once
         );
         tokenProviderMock.VerifyNoOtherCalls();
+
+        notificationsServiceMock.Verify(
+            notificationsService => notificationsService.NotifyUserCreatedAsync(
+                userId, 
+                user.Username, 
+                It.IsAny<CancellationToken>()
+            ),
+            Times.Once
+        );
+        notificationsServiceMock.VerifyNoOtherCalls();
     }
 
     [Theory, AutoMoqData]
@@ -105,6 +118,7 @@ public class CreateUserTests
         [Frozen] Mock<IUserRepository> userRepositoryMock,
         [Frozen] Mock<IEncoder> userEncoderMock,
         [Frozen] Mock<ITokenProvider> tokenProviderMock,
+        [Frozen] Mock<INotificationsService> notificationsServiceMock,
         CreateUserUseCase.CommandHandler handler
     )
     {
@@ -151,6 +165,8 @@ public class CreateUserTests
         userEncoderMock.VerifyNoOtherCalls();
         
         tokenProviderMock.VerifyNoOtherCalls();
+
+        notificationsServiceMock.VerifyNoOtherCalls();
     }
     
     [Theory, AutoMoqData]
@@ -162,6 +178,7 @@ public class CreateUserTests
         [Frozen] Mock<IUserRepository> userRepositoryMock,
         [Frozen] Mock<IEncoder> userEncoderMock,
         [Frozen] Mock<ITokenProvider> tokenProviderMock,
+        [Frozen] Mock<INotificationsService> notificationsServiceMock,
         CreateUserUseCase.CommandHandler handler
     )
     {
@@ -191,5 +208,7 @@ public class CreateUserTests
         userEncoderMock.VerifyNoOtherCalls();
         
         tokenProviderMock.VerifyNoOtherCalls();
+
+        notificationsServiceMock.VerifyNoOtherCalls();
     }
 }

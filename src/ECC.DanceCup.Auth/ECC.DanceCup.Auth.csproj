@@ -11,6 +11,7 @@
       <PackageReference Include="Grpc.AspNetCore.HealthChecks" />
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\ECC.DanceCup.Auth.Infrastructure.Notifications\ECC.DanceCup.Auth.Infrastructure.Notifications.csproj" />
       <ProjectReference Include="..\ECC.DanceCup.Auth.Infrastructure.Security\ECC.DanceCup.Auth.Infrastructure.Security.csproj" />
       <ProjectReference Include="..\ECC.DanceCup.Auth.Infrastructure.Storage\ECC.DanceCup.Auth.Infrastructure.Storage.csproj" />
       <ProjectReference Include="..\ECC.DanceCup.Auth.Presentation.Grpc\ECC.DanceCup.Auth.Presentation.Grpc.csproj" />

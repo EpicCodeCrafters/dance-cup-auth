@@ -43,6 +43,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECC.DanceCup.Auth.Tests.Com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECC.DanceCup.Auth.Application.Tests", "tests\ECC.DanceCup.Auth.Application.Tests\ECC.DanceCup.Auth.Application.Tests.csproj", "{0DC01454-2CBF-4341-9E81-5B5EA85151B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECC.DanceCup.Auth.Infrastructure.Notifications", "src\ECC.DanceCup.Auth.Infrastructure.Notifications\ECC.DanceCup.Auth.Infrastructure.Notifications.csproj", "{4F2AC9DD-2559-47B4-BD79-5B8C821883FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cicd", "cicd", "{0443A25C-1847-45D0-8A8B-9A1ECD85C915}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\github-cd.yml = .github\workflows\github-cd.yml
+		.github\workflows\github-ci.yml = .github\workflows\github-ci.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +71,7 @@ Global
 		{B061311E-F2C9-42F3-B480-ED061A6776C2} = {843C521D-0AC4-428E-BA19-B34D56682D5C}
 		{2D8B4EA4-E45E-408A-AB60-3E96AA1148D7} = {FCBD56AE-DB9A-431C-BF86-F6D6735D1DC3}
 		{0DC01454-2CBF-4341-9E81-5B5EA85151B1} = {FCBD56AE-DB9A-431C-BF86-F6D6735D1DC3}
+		{4F2AC9DD-2559-47B4-BD79-5B8C821883FA} = {29462F65-5941-416E-A921-206CDF892563}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B0CCFD41-6779-47FE-9763-C9F3FAC7A4AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -105,5 +114,9 @@ Global
 		{0DC01454-2CBF-4341-9E81-5B5EA85151B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DC01454-2CBF-4341-9E81-5B5EA85151B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DC01454-2CBF-4341-9E81-5B5EA85151B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F2AC9DD-2559-47B4-BD79-5B8C821883FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F2AC9DD-2559-47B4-BD79-5B8C821883FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F2AC9DD-2559-47B4-BD79-5B8C821883FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F2AC9DD-2559-47B4-BD79-5B8C821883FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
