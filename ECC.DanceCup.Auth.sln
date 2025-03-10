@@ -47,8 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECC.DanceCup.Auth.Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cicd", "cicd", "{0443A25C-1847-45D0-8A8B-9A1ECD85C915}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\github-cd.yml = .github\workflows\github-cd.yml
-		.github\workflows\github-ci.yml = .github\workflows\github-ci.yml
+		.github\workflows\github-cicd-dev.yml = .github\workflows\github-cicd-dev.yml
+		.github\workflows\github-cicd-prod.yml = .github\workflows\github-cicd-prod.yml
 	EndProjectSection
 EndProject
 Global
