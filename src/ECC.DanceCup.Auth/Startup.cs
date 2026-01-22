@@ -29,7 +29,9 @@ public class Startup
         services.AddNotifications(_configuration);
 
         services.AddGrpcServices();
-        services.AddGrpcHealthChecks().AddCheck(string.Empty, () => HealthCheckResult.Healthy());
+        services.AddGrpcHealthChecks()
+            .AddCheck(string.Empty, () => HealthCheckResult.Healthy())
+            .ForwardToPrometheus();
     }
 
     public void Configure(IApplicationBuilder app)
