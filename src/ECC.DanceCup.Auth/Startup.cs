@@ -5,6 +5,7 @@ using ECC.DanceCup.Auth.Infrastructure.Security;
 using ECC.DanceCup.Auth.Infrastructure.Storage;
 using ECC.DanceCup.Auth.Presentation.Grpc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Prometheus;
 
 namespace ECC.DanceCup.Auth;
 
@@ -28,17 +29,23 @@ public class Startup
         services.AddNotifications(_configuration);
 
         services.AddGrpcServices();
-        services.AddGrpcHealthChecks().AddCheck(string.Empty, () => HealthCheckResult.Healthy());
+        services.AddGrpcHealthChecks()
+            .AddCheck(string.Empty, () => HealthCheckResult.Healthy())
+            .ForwardToPrometheus();
     }
 
     public void Configure(IApplicationBuilder app)
     {
         app.UseRouting();
+        
+        app.UseGrpcMetrics();
+        app.UseHttpMetrics();
 
         app.UseEndpoints(endpointRouteBuilder =>
         {
             endpointRouteBuilder.UseGrpcServices();
             endpointRouteBuilder.MapGrpcHealthChecksService();
+            endpointRouteBuilder.MapMetrics();
         });
     }
 }
